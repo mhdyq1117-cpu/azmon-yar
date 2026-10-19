@@ -1,0 +1,264 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-vazirmatn), "Vazirmatn", Tahoma, Arial, sans-serif;
+  --font-mono: var(--font-vazirmatn), "Vazirmatn", Tahoma, monospace;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 1rem;
+  --background: oklch(0.985 0.005 300);
+  --foreground: oklch(0.21 0.03 285);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.03 285);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.03 285);
+  --primary: oklch(0.541 0.247 293);
+  --primary-foreground: oklch(0.985 0.005 300);
+  --secondary: oklch(0.955 0.02 295);
+  --secondary-foreground: oklch(0.44 0.18 293);
+  --muted: oklch(0.96 0.01 300);
+  --muted-foreground: oklch(0.52 0.03 285);
+  --accent: oklch(0.955 0.02 295);
+  --accent-foreground: oklch(0.44 0.18 293);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.92 0.015 295);
+  --input: oklch(0.92 0.015 295);
+  --ring: oklch(0.606 0.213 292.7);
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+/* ===== پس‌زمینه لوکس با هاله‌های بنفش و آبی اقیانوسی ===== */
+.lux-bg {
+  position: relative;
+  background:
+    radial-gradient(42rem 42rem at 88% -10%, oklch(0.93 0.07 300 / 0.65), transparent 60%),
+    radial-gradient(36rem 36rem at 6% 8%, oklch(0.93 0.055 230 / 0.6), transparent 60%),
+    radial-gradient(30rem 30rem at 50% 115%, oklch(0.94 0.06 265 / 0.55), transparent 60%),
+    linear-gradient(180deg, oklch(0.99 0.006 300), oklch(0.98 0.01 250));
+}
+
+/* ===== کارت شیشه‌ای نرم ===== */
+.lux-card {
+  background: oklch(1 0 0 / 0.82);
+  backdrop-filter: blur(18px);
+  border: 1px solid oklch(0.55 0.1 293 / 0.08);
+  border-radius: calc(var(--radius) + 0.5rem);
+  box-shadow:
+    0 1px 2px oklch(0.3 0.06 290 / 0.05),
+    0 12px 40px -12px oklch(0.45 0.19 293 / 0.18);
+}
+
+/* ===== دکمه گرادیانی اصلی ===== */
+.btn-gradient {
+  background-image: linear-gradient(
+    120deg,
+    oklch(0.541 0.247 293),
+    oklch(0.51 0.22 275),
+    oklch(0.577 0.204 250)
+  );
+  background-size: 160% 160%;
+  background-position: 20% 50%;
+  transition: background-position 0.5s ease, transform 0.2s ease, box-shadow 0.3s ease,
+    filter 0.3s ease;
+  box-shadow: 0 10px 30px -8px oklch(0.51 0.22 285 / 0.55);
+}
+.btn-gradient:hover {
+  background-position: 85% 50%;
+  transform: translateY(-1px);
+  box-shadow: 0 16px 38px -10px oklch(0.51 0.22 285 / 0.6);
+}
+.btn-gradient:active {
+  transform: translateY(0) scale(0.99);
+}
+.btn-gradient:disabled {
+  filter: saturate(0.4) brightness(1.05);
+  box-shadow: none;
+  transform: none;
+  cursor: not-allowed;
+}
+
+/* ===== فیلد ورودی نرم ===== */
+.lux-input {
+  width: 100%;
+  border-radius: calc(var(--radius) - 2px);
+  border: 1.5px solid oklch(0.9 0.02 295);
+  background: oklch(1 0 0 / 0.9);
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  line-height: 1.9;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.lux-input::placeholder {
+  color: oklch(0.65 0.02 290);
+}
+.lux-input:focus {
+  border-color: oklch(0.606 0.213 292.7);
+  box-shadow: 0 0 0 4px oklch(0.606 0.213 292.7 / 0.14);
+  background: oklch(1 0 0);
+}
+
+/* ===== انیمیشن‌ها ===== */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  70% {
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes check-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 oklch(0.577 0.245 27.325 / 0.35);
+  }
+  70% {
+    box-shadow: 0 0 0 12px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+@keyframes shimmer-x {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.anim-fade-up {
+  animation: fade-up 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+.anim-pop {
+  animation: pop-in 0.45s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+.anim-float {
+  animation: float-slow 5s ease-in-out infinite;
+}
+.anim-danger-pulse {
+  animation: pulse-ring 1.6s ease-out infinite;
+}
+.check-draw path {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: check-draw 0.7s ease-out 0.25s forwards;
+}
+
+/* ===== اسکرول‌بار سفارشی ===== */
+.nice-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0.7 0.15 293 / 0.45) transparent;
+}
+.nice-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.nice-scroll::-webkit-scrollbar-thumb {
+  background: oklch(0.7 0.15 293 / 0.4);
+  border-radius: 999px;
+}
+.nice-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ===== بوم نقاشی: جلوگیری از اسکرول لمسی ===== */
+.canvas-pad {
+  touch-action: none;
+  -ms-touch-action: none;
+  overscroll-behavior: none;
+  cursor: crosshair;
+}
+
+/* ===== نوار پیشرفت ===== */
+.progress-track {
+  height: 8px;
+  border-radius: 999px;
+  background: oklch(0.93 0.02 295);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background-image: linear-gradient(
+    90deg,
+    oklch(0.606 0.213 292.7),
+    oklch(0.577 0.204 250)
+  );
+  transition: width 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
